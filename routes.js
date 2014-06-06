@@ -1,6 +1,7 @@
 var userMap = require('./userMap');
 var db = require('./db');
 
+
 exports.home = function(req, res){
   res.send('welcome to my HOME PAGE!');
 };
@@ -24,7 +25,7 @@ exports.getCalendarEvents = function(req, res){
   });
 
   if(selectedUser){
-    db.findUser(selectedUser, function(err, user){
+    db.findUser(selectedUser).then(function(user){
       res.send(user);
     });
   } else{

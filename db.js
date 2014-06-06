@@ -1,3 +1,4 @@
+var Q = require('q');
 var MongoClient = require('mongodb').MongoClient;
 var user = null;
 
@@ -12,37 +13,46 @@ MongoClient.connect(
 
 
 exports.upsertUser = function(opts, next){
+  var deferred = Q.defer();
   var profile = opts.profile;
   var accessToken = opts.accessToken;
-
-  console.log(profile);
+  var newUser = {
+    googleId: profile.id,
+    emails: profile.emails,
+    name: profile.name,
+    accessToken: accessToken
+  };
 
   user.update(
     { googleId: profile.id },
-    { $set: {
-        googleId: profile.id,
-        emails: profile.emails,
-        name: profile.name,
-        accessToken: accessToken
-    } },
+    { $set: newUser },
     { upsert: true },
 
-    function(err, uhh, stats){
-      if(stats.updatedExisting)
-        console.log('Updated user');
-      else
-        console.log('Created new user');
+    function(err, newUser, stats){
+      console.log(newUser);
+      if(!err){
+        if(stats.updatedExisting)
+          console.log('Updated user');
+        else
+          console.log('Created new user');
 
-      if(next) next(err, uhh);
+        deferred.resolve(newUser);
+      }
     }
   );
+
+  return deferred.promise;
 };
 
 
 exports.findUser = function(opts, next){
+  var deferred = Q.defer();
+
   user.findOne({
     emails: { $in: [{value: opts.email}] }
-  }, function(err, user){
-    if(next) next(err, user);
+  }, function(err, foundUser){
+    if(!err) deferred.resolve(foundUser);
   });
+
+  return deferred.promise;
 };
