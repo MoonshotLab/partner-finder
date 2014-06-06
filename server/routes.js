@@ -10,6 +10,4 @@ exports.loginError = function(req, res){
 
 exports.oauth = function(req, res){
   res.send('authenticated');
-  console.log('params', req.params);
-  console.log('query', req.query);
 };
