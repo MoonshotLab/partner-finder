@@ -1,5 +1,6 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var db = require('./db');
 
 // Passport Config
 passport.use(
@@ -8,14 +9,15 @@ passport.use(
       clientID: process.env.PARTNER_FINDER_GOOGLE_CLIENT_ID,
       clientSecret: process.env.PARTNER_FINDER_GOOGLE_SECRET,
       callbackURL: 'http://localhost:3000/oauth2callback',
-      scope: ['profile', 'https://www.googleapis.com/auth/calendar']
+      scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar']
     },
     function(accessToken, refreshToken, params, profile, done){
-      console.log('params', params);
-      console.log('accessToken', accessToken);
-      console.log('refreshToken', refreshToken);
-      console.log('profile', profile);
-      done(null, profile);
+      db.upsertUser({
+        accessToken: accessToken,
+        profile: profile
+      }, function(err, user){
+        done(null, profile);
+      });
     }
   )
 );
