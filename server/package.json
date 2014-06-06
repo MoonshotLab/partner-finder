@@ -13,6 +13,9 @@
   "author": "Joe Longstreet",
   "license": "MIT",
   "dependencies": {
-    "sparknode": "^0.4.5"
+    "sparknode": "^0.4.5",
+    "passport": "^0.2.0",
+    "passport-google-oauth": "^0.1.5",
+    "express": "^4.4.1"
   }
 }
