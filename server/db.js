@@ -11,9 +11,11 @@ MongoClient.connect(
 );
 
 
-exports.upsertUser = function(opts){
+exports.upsertUser = function(opts, next){
   var profile = opts.profile;
   var accessToken = opts.accessToken;
+
+  console.log(profile);
 
   user.update(
     { googleId: profile.id },
@@ -26,10 +28,21 @@ exports.upsertUser = function(opts){
     { upsert: true },
 
     function(err, uhh, stats){
-      if(stats.updatedExisted)
+      if(stats.updatedExisting)
         console.log('Updated user');
       else
         console.log('Created new user');
+
+      if(next) next(err, uhh);
     }
   );
-}
+};
+
+
+exports.findUser = function(opts, next){
+  user.findOne({
+    emails: { $in: [{value: opts.email}] }
+  }, function(err, user){
+    if(next) next(err, user);
+  });
+};

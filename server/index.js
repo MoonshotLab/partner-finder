@@ -19,6 +19,7 @@ app.get('/oauth2callback',
   passport.authenticate('google', { failureRedirect: '/login-error' }),
   routes.oauth
 );
+app.get('/:userButtonId/calendarEvents', routes.getCalendarEvents);
 
 
 var core = new spark.Core(
