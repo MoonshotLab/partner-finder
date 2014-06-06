@@ -1,0 +1,18 @@
+{
+  "name": "partnerFinder",
+  "version": "0.0.0",
+  "description": "A web server which talks to google calendar and reports to a spark board",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spark",
+    "calendar"
+  ],
+  "author": "Joe Longstreet",
+  "license": "MIT",
+  "dependencies": {
+    "sparknode": "^0.4.5"
+  }
+}
