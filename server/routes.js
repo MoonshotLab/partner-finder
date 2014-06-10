@@ -1,5 +1,6 @@
 var userMap = require('./userMap');
 var db = require('./db');
+var calendar = require('./calendar');
 
 
 exports.home = function(req, res){
@@ -25,9 +26,12 @@ exports.getCalendarEvents = function(req, res){
   });
 
   if(selectedUser){
-    db.findUser(selectedUser).then(function(user){
-      res.send(user);
-    });
+    db.findUser(selectedUser)
+      .then(calendar.getAllEvents)
+      .then(function(events){
+        console.log(events)
+      }
+    );
   } else{
     res.send({
       error: 'No user with matching button id. Check out the list below',

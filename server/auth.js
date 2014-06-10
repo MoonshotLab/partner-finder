@@ -15,7 +15,7 @@ passport.use(
       db.upsertUser({
         accessToken: accessToken,
         profile: profile
-      }, function(err, user){
+      }).then(function(err, user){
         done(null, profile);
       });
     }
