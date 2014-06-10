@@ -12,7 +12,7 @@ MongoClient.connect(
 );
 
 
-exports.upsertUser = function(opts, next){
+exports.upsertUser = function(opts){
   var deferred = Q.defer();
   var profile = opts.profile;
   var accessToken = opts.accessToken;
@@ -29,7 +29,6 @@ exports.upsertUser = function(opts, next){
     { upsert: true },
 
     function(err, newUser, stats){
-      console.log(newUser);
       if(!err){
         if(stats.updatedExisting)
           console.log('Updated user');
