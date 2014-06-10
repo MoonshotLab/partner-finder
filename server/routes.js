@@ -29,7 +29,7 @@ exports.getCalendarEvents = function(req, res){
     db.findUser(selectedUser)
       .then(calendar.getAllEvents)
       .then(function(events){
-        console.log(events)
+        res.send(events);
       }
     );
   } else{
