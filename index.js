@@ -1,7 +1,7 @@
 var express = require('express');
 var spark = require('sparknode');
-var passport = require('./auth').passport;
-var routes = require('./routes');
+var passport = require('./lib/auth').passport;
+var routes = require('./lib/routes');
 var PORT = process.env.PORT || 3000;
 
 
