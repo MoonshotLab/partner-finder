@@ -1,4 +1,4 @@
-var userMap = require('./userMap');
+var userMap = require('../config/userMap');
 var db = require('./db');
 var calendar = require('./calendar');
 
