@@ -13,12 +13,19 @@ server.listen(PORT, function(){
   console.log('server listening on port', PORT);
 });
 
-app.get('/', passport.authenticate('google'), routes.home);
+app.get('/', passport.authenticate('google', {
+  accessType: 'offline',
+  approvalPrompt: 'force',
+  scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar']
+}), routes.home);
+
 app.get('/login-error', routes.loginError);
+
 app.get('/oauth2callback',
-  passport.authenticate('google', { failureRedirect: '/login-error' }),
+  passport.authenticate('google', { failureRedirect: '/login-error'}),
   routes.oauth
 );
+
 app.get('/:userButtonId/calendarEvents', routes.getCalendarEvents);
 
 
