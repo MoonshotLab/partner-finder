@@ -41,7 +41,7 @@ exports.upsertUser = function(userOpts){
 };
 
 
-exports.findUser = function(opts, next){
+exports.findUser = function(opts){
   var deferred = Q.defer();
 
   user.findOne({
