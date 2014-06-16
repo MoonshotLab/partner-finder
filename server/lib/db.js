@@ -15,6 +15,11 @@ MongoClient.connect(
 exports.upsertUser = function(userOpts){
   var deferred = Q.defer();
 
+  // ensure these google properties don't get written
+  // to the db
+  delete userOpts._raw;
+  delete userOpts._json;
+
   user.update(
     { id: userOpts.id },
     { $set: userOpts },

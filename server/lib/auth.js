@@ -16,9 +16,6 @@ var strategy = new GoogleStrategy(
     user.accessToken = accessToken;
 
     db.upsertUser(user).then(function(err, newUser){
-      if(err) console.log('error', err);
-      else console.log('succeeding');
-
       done(null, user);
     });
   }
