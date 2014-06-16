@@ -12,29 +12,20 @@ MongoClient.connect(
 );
 
 
-exports.upsertUser = function(opts){
+exports.upsertUser = function(userOpts){
   var deferred = Q.defer();
-  var profile = opts.profile;
-  var accessToken = opts.accessToken;
-  var newUser = {
-    googleId: profile.id,
-    emails: profile.emails,
-    name: profile.name,
-    refreshToken: opts.refreshToken,
-    accessToken: accessToken
-  };
 
   user.update(
-    { googleId: profile.id },
-    { $set: newUser },
+    { id: userOpts.id },
+    { $set: userOpts },
     { upsert: true },
 
     function(err, newUser, stats){
       if(!err){
         if(stats.updatedExisting)
-          console.log('Updated user', profile.name);
+          console.log('Updated user', userOpts.name);
         else
-          console.log('Created new user', profile.name);
+          console.log('Created new user', userOpts.name);
 
         deferred.resolve(newUser);
       }
