@@ -1,4 +1,4 @@
-exports.floors = [{
+exports.floors = {
   1: [
     '(KC) Room - Apollo',
     '(KC) Room - Big Dipper',
@@ -15,6 +15,7 @@ exports.floors = [{
     '(KC) Room - Innovation Lab',
     '(KC) Room - Neil Armstrong',
     '(KC) Room - Sally Ride',
+    'Moonshot',
   ],
   3: [
     '(KC) Room - Earth',
@@ -30,4 +31,4 @@ exports.floors = [{
   4: [
     '(KC) Room - CPG Room',
   ]
-}];
+};
