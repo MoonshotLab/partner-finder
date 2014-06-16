@@ -36,7 +36,7 @@ exports.init = function(){
     var sparkUserId = 0;
 
     userMap.users.forEach(function(user){
-      if(user.sparkId == req.params.userButtonId){
+      if(user.sparkId == data.userId){
         selectedUser = user;
         sparkUserId = user.sparkId;
       }
