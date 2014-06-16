@@ -26,7 +26,7 @@ app.get('/oauth2callback',
   routes.oauth
 );
 
-app.get('/:userButtonId/calendarEvents', routes.getCalendarEvents);
+app.get('/:userButtonId/event', routes.getNextCalendarEvent);
 
 
 var core = new spark.Core(
