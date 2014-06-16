@@ -1,3 +1,4 @@
+var roomMap = require('../config/roomMap');
 var userMap = require('../config/userMap');
 var auth = require('./auth');
 var db = require('./db');
@@ -24,7 +25,7 @@ exports.oauth = function(req, res){
 exports.getNextCalendarEvent = function(req, res){
   var selectedUser = null;
   userMap.users.forEach(function(user){
-    if(user.buttonId == req.params.userButtonId)
+    if(user.sparkId == req.params.sparkUserId)
       selectedUser = user;
   });
 
