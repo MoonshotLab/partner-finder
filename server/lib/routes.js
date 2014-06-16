@@ -21,7 +21,7 @@ exports.oauth = function(req, res){
 };
 
 
-exports.getCalendarEvents = function(req, res){
+exports.getNextCalendarEvent = function(req, res){
   var selectedUser = null;
   userMap.users.forEach(function(user){
     if(user.buttonId == req.params.userButtonId)
@@ -31,9 +31,9 @@ exports.getCalendarEvents = function(req, res){
   if(selectedUser){
     db.findUser(selectedUser)
       .then(auth.getNewAccessToken)
-      .then(calendar.getAllEvents)
-      .then(function(events){
-        res.send(events);
+      .then(calendar.getNextEvent)
+      .then(function(calendarEvent){
+        res.send(calendarEvent);
       }
     );
   } else{
