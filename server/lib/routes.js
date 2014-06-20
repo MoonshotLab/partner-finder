@@ -1,7 +1,7 @@
-var roomMap = require('../config/roomMap');
 var userMap = require('../config/userMap');
 var auth = require('./auth');
 var db = require('./db');
+var utils = require('./utils');
 var calendar = require('./calendar');
 
 
@@ -34,6 +34,8 @@ exports.getNextCalendarEvent = function(req, res){
       .then(auth.getNewAccessToken)
       .then(calendar.getNextEvent)
       .then(function(calendarEvent){
+        utils.attachFloorToEvent(calendarEvent);
+
         var resObj = {};
         var numKeys = 0;
 
