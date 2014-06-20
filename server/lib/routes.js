@@ -34,7 +34,17 @@ exports.getNextCalendarEvent = function(req, res){
       .then(auth.getNewAccessToken)
       .then(calendar.getNextEvent)
       .then(function(calendarEvent){
-        res.send(calendarEvent);
+        var resObj = {};
+        var numKeys = 0;
+
+        for(var key in req.query){
+          resObj[key] = calendarEvent[key];
+          numKeys++;
+        }
+
+        if(numKeys === 0) resObj = calendarEvent;
+
+        res.send(resObj);
       }
     );
   } else{
