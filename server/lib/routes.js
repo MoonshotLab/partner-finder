@@ -25,7 +25,7 @@ exports.oauth = function(req, res){
 exports.getNextCalendarEvent = function(req, res){
   var selectedUser = null;
   userMap.users.forEach(function(user){
-    if(user.sparkId == req.params.sparkUserId)
+    if(user.sparkId == req.params.identifier|| user.email == req.params.identifier)
       selectedUser = user;
   });
 

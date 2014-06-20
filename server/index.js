@@ -27,4 +27,5 @@ app.get('/oauth2callback',
   routes.oauth
 );
 
-app.get('/:sparkUserId/event', routes.getNextCalendarEvent);
+app.get('/partner/:identifier', routes.getNextCalendarEvent);
+app.get('/user/:identifier', routes.getNextCalendarEvent);
