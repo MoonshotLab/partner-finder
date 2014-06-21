@@ -106,6 +106,9 @@ exports.getNextEvent = function(user){
     .then(getMostRecentEventFromEvents)
     .then(function(calendarEvent){
       deferred.resolve(calendarEvent);
+    })
+    .catch(function(err){
+      console.log('Error getting events from calendar:', err);
     });
 
   return deferred.promise;

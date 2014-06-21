@@ -17,6 +17,8 @@ var strategy = new GoogleStrategy(
 
     db.upsertUser(user).then(function(err, newUser){
       done(null, user);
+    }).catch(function(err){
+      console.log('error upserting user', e);
     });
   }
 );
