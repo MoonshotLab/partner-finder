@@ -16,6 +16,7 @@ exports.floors = {
     '(KC) Room - Neil Armstrong',
     '(KC) Room - Sally Ride',
     'Moonshot',
+    'lab'
   ],
   3: [
     '(KC) Room - Earth',
