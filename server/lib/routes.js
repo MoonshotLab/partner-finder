@@ -23,6 +23,32 @@ exports.oauth = function(req, res){
 
 
 exports.getNextCalendarEvent = function(req, res){
+  var handleResponse = function(calendarEvent){
+    utils.attachFloorToEvent(calendarEvent);
+
+    var resObj = {};
+    var numKeys = 0;
+
+    for(var key in req.query){
+      resObj[key] = calendarEvent[key];
+      numKeys++;
+    }
+
+    if(numKeys === 0) resObj = calendarEvent;
+
+    res.send(resObj);
+  };
+
+
+  var handleError = function(err){
+    var errorMessage = 'Some unknown error occured';
+    try{ errorMessage = String(err); }
+    catch(error) { }
+
+    res.send(errorMessage);
+  };
+
+
   var selectedUser = null;
   userMap.users.forEach(function(user){
     if(user.sparkId == req.params.identifier|| user.email == req.params.identifier)
@@ -33,22 +59,8 @@ exports.getNextCalendarEvent = function(req, res){
     db.findUser(selectedUser)
       .then(auth.getNewAccessToken)
       .then(calendar.getNextEvent)
-      .then(function(calendarEvent){
-        utils.attachFloorToEvent(calendarEvent);
-
-        var resObj = {};
-        var numKeys = 0;
-
-        for(var key in req.query){
-          resObj[key] = calendarEvent[key];
-          numKeys++;
-        }
-
-        if(numKeys === 0) resObj = calendarEvent;
-
-        res.send(resObj);
-      }
-    );
+      .then(handleResponse)
+      .catch(handleError);
   } else{
     res.send({
       error: 'No user with matching button id. Check out the list below',
