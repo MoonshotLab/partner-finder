@@ -9,10 +9,3 @@ User calendars can be consumed via rest routes with the pattern `partner/:email-
 
 ## Authenticating
 To be tracked by the partner finder, you need to first hit the authentication route located at [http://partner-finder.herokuapp.com](http://partner-finder.herokuapp.com). This builds a user record with an oAuth2 access and refresh token.
-
-## Deploying to Heroku
-The node application is located in a subtree and can be deployed with one of the following commands:
-```
-  git subtree push --prefix server heroku master
-  git push heroku `git subtree split --prefix server master`:master --force`
-```
