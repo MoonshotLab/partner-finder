@@ -1,18 +1,18 @@
 exports.users = [
   {
-    email: 'jlongstreet@barkleyus.com',
+    email: 'jcox@barkleyus.com',
     sparkId: 0
   },
   {
-    email: 'spaller@barkleyus.com',
+    email: 'phardman@barkleyus.com',
     sparkId: 1
   },
   {
-    email: 'jcox@barkleyus.com',
+    email: 'ccohen@barkleyus.com',
     sparkId: 2
   },
   {
-    email: 'phardman@barkleyus.com',
+    email: 'emiller@barkleyus.com',
     sparkId: 3
   }
 ];
