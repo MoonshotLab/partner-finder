@@ -1,6 +1,6 @@
 exports.users = [
   {
-    email: 'jcox@barkleyus.com',
+    email: 'jlongstreet@barkleyus.com',
     sparkId: 0
   },
   {
