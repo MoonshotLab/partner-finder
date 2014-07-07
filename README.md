@@ -9,3 +9,11 @@ User calendars can be consumed via rest routes with the pattern `partner/:email-
 
 ## Authenticating
 To be tracked by the partner finder, you need to first hit the authentication route located at [http://partner-finder.herokuapp.com](http://partner-finder.herokuapp.com). This builds a user record with an oAuth2 access and refresh token.
+
+## Environment Variables
+* `ROOT_URL` - Used for the google auth callback
+* `DB_CONNECT` - The Full mongo connection string:  `mongodb://{mongo_username}:{mongo_password}@{mongo_url}
+* `GOOGLE_CLIENT_ID` - Google app client id
+* `GOOGLE_SECRET` - Google app secret
+* `SPARK_ACCESS_TOKEN`
+* `SPARK_CORE_ID`
